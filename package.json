@@ -1,1 +1,12 @@
-{"name":"@portal-solutions/pasqi","workspaces":[],"devDependencies":{"typescript":"^5.9.3","zshy":"^0.6.0"}}
+{
+    "name": "@portal-solutions/pasqi",
+    "workspaces": ["packages/snap","packages/common-impl"],
+    "devDependencies": {
+        "typescript": "^5.9.3",
+        "zshy": "^0.6.0"
+    },
+    "dependencies": {
+        "@portal-solutions/pasqi-snap":"0.0.0",
+        "@portal-solutions/pasqi-common-impl":"0.0.0"
+    }
+}

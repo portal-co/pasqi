@@ -11,8 +11,8 @@ export declare const defaultSnapshot: Snapshot;
 export declare class ChallengeFactory {
     #private;
     constructor({ createChallenge, }?: {
-        createChallenge?: () => Promise<Uint8Array> | Uint8Array;
+        createChallenge?: () => Promise<Uint8Array<BufferSource & ArrayBufferLike>> | Uint8Array<BufferSource & ArrayBufferLike>;
     });
-    get createChallenge(): () => Promise<Uint8Array> | Uint8Array;
+    get createChallenge(): () => Promise<Uint8Array<BufferSource & ArrayBufferLike>> | Uint8Array<BufferSource & ArrayBufferLike>;
 }
 export declare const defaultChallengeFactory: ChallengeFactory;

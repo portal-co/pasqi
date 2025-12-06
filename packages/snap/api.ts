@@ -25,8 +25,8 @@ export class Snapshot {
 export const defaultSnapshot = /*@__PURE__*/ new Snapshot();
 /* @__NO_SIDE_EFFECTS__ */
 export class ChallengeFactory {
-  readonly #createChallenge: () => Promise<Uint8Array>
-    | Uint8Array;
+  readonly #createChallenge: () => Promise<Uint8Array<BufferSource & ArrayBufferLike>>
+    | Uint8Array<BufferSource & ArrayBufferLike>;
   /* @__NO_SIDE_EFFECTS__ */
   constructor({
     createChallenge = () => {
@@ -35,7 +35,7 @@ export class ChallengeFactory {
       return array;
     },
   }: {
-    createChallenge?: () => Promise<Uint8Array> | Uint8Array;
+    createChallenge?: () => Promise<Uint8Array<BufferSource & ArrayBufferLike>> | Uint8Array<BufferSource & ArrayBufferLike>;
   } = {}) {
     this.#createChallenge = createChallenge;
   }

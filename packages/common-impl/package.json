@@ -1,0 +1,33 @@
+{
+    "name": "@portal-solutions/pasqi-common-impl",
+    "type": "module",
+    "license": "MPL-2.0",
+    "version": "0.0.0",
+    "scripts": {
+        "build": "npx zshy -p ../../tsconfig.json"
+    },
+    "zshy": {
+        "exports": {
+            ".": "./index.ts",
+            "./patches": "./patches.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.cts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.cts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./patches": {
+            "types": "./dist/patches.d.cts",
+            "import": "./dist/patches.js",
+            "require": "./dist/patches.cjs"
+        }
+    }
+}
