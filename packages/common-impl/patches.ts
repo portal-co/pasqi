@@ -3,7 +3,8 @@ import { ChallengeFactory, defaultChallengeFactory, Snapshot } from "@portal-sol
 Object.defineProperty(Snapshot.prototype, "performPrf", {
     value: async function (
         this: Snapshot,
-        input: Uint8Array<BufferSource & ArrayBufferLike>, createChallenge: ChallengeFactory = defaultChallengeFactory): Promise<Uint8Array<BufferSource & ArrayBufferLike>> {
+        input: Uint8Array<BufferSource & ArrayBufferLike>,
+        createChallenge: ChallengeFactory = defaultChallengeFactory): Promise<Uint8Array<BufferSource & ArrayBufferLike>> {
         const val = await this.get({
             publicKey: {
                 timeout: 60000, challenge: (await createChallenge.createChallenge()).buffer, extensions: {
@@ -15,8 +16,11 @@ Object.defineProperty(Snapshot.prototype, "performPrf", {
     }
 });
 
-declare module "@portal-solutions/pasqi-snap"{
-    interface Snapshot{
-        performPrf(this: Snapshot,input: Uint8Array<BufferSource & ArrayBufferLike>, createChallenge?: ChallengeFactory): Promise<Uint8Array<BufferSource & ArrayBufferLike>>;
+declare module "@portal-solutions/pasqi-snap" {
+    interface Snapshot {
+        performPrf(this: Snapshot, input: Uint8Array<BufferSource & ArrayBufferLike>, createChallenge?: ChallengeFactory): Promise<Uint8Array<BufferSource & ArrayBufferLike>>;
+    }
+    interface ChallengeFactory {
+        
     }
 }

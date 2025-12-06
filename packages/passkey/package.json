@@ -1,5 +1,5 @@
 {
-    "name": "@portal-solutions/pasqi-common-impl",
+    "name": "@portal-solutions/pasqi-passkey",
     "type": "module",
     "license": "MPL-2.0",
     "version": "0.0.0",
@@ -8,13 +8,8 @@
     },
     "zshy": {
         "exports": {
-            ".": "./index.ts",
-            "./patches": "./patches.ts"
+            ".": "./index.ts"
         }
-    },
-    "dependencies": {
-        "@portal-solutions/pasqi-snap": "0.0.0",
-        "@portal-solutions/pasqi-passkey": "0.0.0"
     },
     "files": [
         "dist"
@@ -27,11 +22,6 @@
             "types": "./dist/index.d.cts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
-        },
-        "./patches": {
-            "types": "./dist/patches.d.cts",
-            "import": "./dist/patches.js",
-            "require": "./dist/patches.cjs"
         }
     }
 }
