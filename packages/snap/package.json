@@ -1,7 +1,13 @@
 {
   "name": "@portal-solutions/pasqi-snap",
   "type": "module",
-  "zshy": "index.ts",
+  "zshy": {
+    "exports": {
+      ".": "./index.ts",
+      "./api": "./api.ts",
+      "./core": "./core.ts"
+    }
+  },
   "license": "MPL-2.0",
   "scripts": {
     "build": "npx zshy -p ../../tsconfig.json"
@@ -17,6 +23,16 @@
       "types": "./dist/index.d.cts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./api": {
+      "types": "./dist/api.d.cts",
+      "import": "./dist/api.js",
+      "require": "./dist/api.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.cts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
     }
   }
 }
