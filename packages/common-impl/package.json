@@ -13,8 +13,9 @@
         }
     },
     "dependencies": {
+        "@portal-solutions/pasqi-passkey": "0.0.0",
         "@portal-solutions/pasqi-snap": "0.0.0",
-        "@portal-solutions/pasqi-passkey": "0.0.0"
+        "cbor2": "^2.0.1"
     },
     "files": [
         "dist"
