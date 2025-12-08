@@ -1,0 +1,27 @@
+{
+    "name": "@portal-solutions/pasqi-passkey",
+    "type": "module",
+    "license": "MPL-2.0",
+    "version": "0.0.0",
+    "scripts": {
+        "build": "npx zshy -p ../../tsconfig.json"
+    },
+    "zshy": {
+        "exports": {
+            ".": "./index.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.cts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.cts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    }
+}

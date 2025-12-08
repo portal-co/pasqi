@@ -1,1 +1,11 @@
-{ "compilerOptions": { "target": "esnext", "lib": ["DOM", "ESNext"] } }
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "moduleResolution": "nodenext",
+        "module": "nodenext"
+    }
+}

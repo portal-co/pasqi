@@ -1,9 +1,17 @@
 {
-  "name": "@portal-solutions/pasqi",
-  "workspaces": [],
-  "devDependencies": {
-    "typescript": "^5.9.3",
-    "zshy": "^0.6.0"
-  },
-  "zshy": "./packages/snap/index.ts"
+    "name": "@portal-solutions/pasqi",
+    "workspaces": [
+        "packages/snap",
+        "packages/common-impl",
+        "packages/passkey"
+    ],
+    "devDependencies": {
+        "typescript": "^5.9.3",
+        "zshy": "^0.6.0"
+    },
+    "_dependencies": {
+        "@portal-solutions/pasqi-snap": "0.0.0",
+        "@portal-solutions/pasqi-passkey": "0.0.0",
+        "@portal-solutions/pasqi-common-impl": "0.0.0"
+    }
 }
