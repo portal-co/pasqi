@@ -1,13 +1,14 @@
 # @portal-solutions/pasqi
 
 ## Description
-Project pasqi
+"Pasqi" - Passkeys and Snaps. A workspace for integrating Passkeys and MetaMask Snaps.
 
 ## Goals
-- [ ] Add project goals
+- [ ] Implement Passkey support
+- [ ] Develop MetaMask Snap integration
 
 ## Progress
-- [ ] Initial setup
+- [ ] Workspace setup with `snap` and `passkey` packages
 
 ---
 *AI assisted*
