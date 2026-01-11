@@ -2,6 +2,8 @@ import { ChallengeFactory } from "@portal-solutions/pasqi-snap";
 import { _Uint8Array } from "@portal-solutions/pasqi-snap";
 import { AuthenticatorChallengeRaw, toToSignArrayBuffer } from "@portal-solutions/pasqi-passkey";
 import { encode } from "cbor2";
+import { p256 } from "@noble/curves/p256";
+import { ed25519 } from "@noble/curves/ed25519";
 
 export class UI {
     readonly #success: (result: UIResult) => void;
@@ -49,6 +51,51 @@ export interface UIAlg {
     readonly verifyingKey: any;
     alg(input: Uint8Array): Uint8Array | Promise<Uint8Array>;
 }
+
+export function createNobleAlg(params: {
+    curve: "p256" | "ed25519";
+    privateKey: Uint8Array;
+    rpIdHash: Uint8Array;
+    parentFlags: number;
+    verifyingKeyAlg?: number;
+}): UIAlg {
+    const { curve, privateKey, rpIdHash, parentFlags } = params;
+    if (curve === "p256") {
+        const publicKey = p256.getPublicKey(privateKey);
+        const x = publicKey.slice(1, 33);
+        const y = publicKey.slice(33, 65);
+        return {
+            rpIdHash,
+            parentFlags,
+            verifyingKey: new Map<number, any>([
+                [1, 2], // kty: EC2
+                [3, params.verifyingKeyAlg ?? -7], // alg: ES256
+                [-1, 1], // crv: P-256
+                [-2, x],
+                [-3, y],
+            ]),
+            alg: (input) => {
+                const signature = p256.sign(input, privateKey);
+                return signature.toDER();
+            }
+        };
+    } else if (curve === "ed25519") {
+        const publicKey = ed25519.getPublicKey(privateKey);
+        return {
+            rpIdHash,
+            parentFlags,
+            verifyingKey: new Map<number, any>([
+                [1, 1], // kty: OKP
+                [3, params.verifyingKeyAlg ?? -8], // alg: EdDSA
+                [-1, 6], // crv: Ed25519
+                [-2, publicKey],
+            ]),
+            alg: (input) => ed25519.sign(input, privateKey),
+        };
+    }
+    throw new Error(`Unsupported curve: ${curve}`);
+}
+
 export async function sign(params: UIParams, {rpIdHash,parentFlags,verifyingKey,alg}: UIAlg): Promise<UIResult> {
     const handle = (handle => 'buffer' in handle ? new Uint8Array(handle.buffer).slice().buffer : new Uint8Array(handle).buffer)(('anonymousVerifyingKey' in params.user ? (params.user.anonymousVerifyingKey) : params.user.id));
     const childFlags = 0x18 | (parentFlags & 5);
